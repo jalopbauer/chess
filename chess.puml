@@ -7,6 +7,9 @@ class Position
 Position : int x, y
 Position : Position(x,y)
 
+class PieceColor
+PieceColor : Color color
+
 interface MoveValidator
 MoveValidator : validate(Move move, Board board):boolean
 
