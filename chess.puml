@@ -8,7 +8,7 @@ Position : int x, y
 Position : Position(x,y)
 
 interface MoveValidator
-MoveValidator : validate(Move move, Board board)
+MoveValidator : validate(Move move, Board board):boolean
 
 ' Piece Handler
 interface Board
