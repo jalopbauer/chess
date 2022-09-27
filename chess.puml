@@ -10,4 +10,11 @@ Position : Position(x,y)
 interface MoveValidator
 MoveValidator : validate(Move move, Board board)
 
+' Piece Handler
+interface Board
+Board : getpieceInPosition(Position position):Optional<Piece>
+Board : doesPositionExist(Position position):boolean
+Board : removePieceInPosition(Position position)
+Board : setPieceInPosition(Position position)
+
 @enduml
