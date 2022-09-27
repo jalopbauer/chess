@@ -1,0 +1,4 @@
+@startuml Chess
+interface MoveValidator
+MoveValidator : validate(Move move, Board board)
+@enduml
