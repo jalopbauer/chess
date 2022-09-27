@@ -1,4 +1,9 @@
 @startuml Chess
+class Move
+Move : Position initialPosition, finalPosition
+Move : Move(initialPosition, finalPosition)
+
 interface MoveValidator
 MoveValidator : validate(Move move, Board board)
+
 @enduml
