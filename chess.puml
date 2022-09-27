@@ -14,8 +14,8 @@ MoveValidator : validate(Move move, Board board)
 interface Board
 Board : getpieceInPosition(Position position):Optional<Piece>
 Board : doesPositionExist(Position position):boolean
-Board : removePieceInPosition(Position position)
-Board : setPieceInPosition(Position position)
+Board : removePieceInPosition(Position position):Board
+Board : setPieceInPosition(Position position):Board
 
 interface Piece
 Piece : getName():String
