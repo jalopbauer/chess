@@ -20,6 +20,7 @@ Board : setPieceInPosition(Position position):Board
 interface Piece
 Piece : getName():String
 Piece : value():int
+Piece : getPieceColor(): PieceColor
 
 interface WinCondition
 WinCondition : check(Board board):boolean
