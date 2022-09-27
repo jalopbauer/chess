@@ -21,5 +21,7 @@ interface Piece
 Piece : getName():String
 Piece : value():int
 
+interface WinCondition
+WinCondition : check(Board board):boolean
 
 @enduml
