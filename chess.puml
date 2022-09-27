@@ -17,4 +17,9 @@ Board : doesPositionExist(Position position):boolean
 Board : removePieceInPosition(Position position)
 Board : setPieceInPosition(Position position)
 
+interface Piece
+Piece : getName():String
+Piece : value():int
+
+
 @enduml
