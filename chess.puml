@@ -3,6 +3,10 @@ class Move
 Move : Position initialPosition, finalPosition
 Move : Move(initialPosition, finalPosition)
 
+class Position
+Position : int x, y
+Position : Position(x,y)
+
 interface MoveValidator
 MoveValidator : validate(Move move, Board board)
 
