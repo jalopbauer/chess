@@ -106,6 +106,8 @@ Game ..> TurnHandler
 Game ..> PieceMoveValidatorMapper
 Game ..> Board
 Game ..> "1...n" WinCondition
+
+' Se llaman movement restrictions
 ' Las win conditions siempre van a usar WinConditionData y nunca va a cambiar. Pasar un puntero pero que no lo pueda editar maybe mejor?
 ' MoveValidatorData los mismo ue arriba peeero el move si cambia entonces eso si pasar por el metodo?
 @enduml

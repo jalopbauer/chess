@@ -1,0 +1,12 @@
+@startuml
+(*) --> "Select players name and color"
+--> "Start Game"
+if "Victory has been achieved" then
+    -->[true] (*)
+else
+    -->[false] "Something else"
+    --> "Check win condition"
+    --> "Victory has been achieved"
+endif
+
+@enduml
