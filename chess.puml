@@ -98,9 +98,14 @@ TurnHandler : getTurns():List<Turn>
 TurnHandler ..> Turn
 TurnHandler ..> "0...n" Turn
 
-interface GameFlow
-GameFlow : next(Display display)
-GameFlow : hasEnded(): boolean
+interface Game
+Game : next(Display display)
+Game : hasEnded(): boolean
+' Relationships
+Game ..> TurnHandler
+Game ..> PieceMoveValidatorMapper
+Game ..> Board
+Game ..> "1...n" WinCondition
 ' Las win conditions siempre van a usar WinConditionData y nunca va a cambiar. Pasar un puntero pero que no lo pueda editar maybe mejor?
 ' MoveValidatorData los mismo ue arriba peeero el move si cambia entonces eso si pasar por el metodo?
 @enduml
