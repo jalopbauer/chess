@@ -1,12 +1,15 @@
-@startuml
-(*) --> "Select players name and color"
---> "Start Game"
-if "Victory has been achieved" then
-    -->[true] (*)
-else
-    -->[false] "Something else"
-    --> "Check win condition"
-    --> "Victory has been achieved"
-endif
-
+@startuml Chess game flow
+start
+:Load game data;
+while (Want to play game?) is (yes)
+    :Select game type;
+    :Match player name with piece color;
+    while (Is any winning condition met?) is (no)
+        :Ask player action;
+    endwhile
+    ->yes;
+    :Display winner;
+endwhile
+stop
 @enduml
+
