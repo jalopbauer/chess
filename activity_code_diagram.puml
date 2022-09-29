@@ -1,0 +1,18 @@
+@startuml Chess game flow
+start
+:Load game data;
+while (Ask if user want to play game?) is (yes)
+    :User selects game type;
+    :Match player name with piece color;
+    while (Is any winning condition met?) is (no)
+        :Ask player move;
+        :Validate move;
+        :Make move;
+        :Save turn;
+    endwhile
+    ->yes;
+    :Display winner;
+endwhile
+stop
+@enduml
+
