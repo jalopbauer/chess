@@ -1,31 +1,80 @@
 @startuml Chess
-class Move
-Move : Position initialPosition, finalPosition
-Move : Move(initialPosition, finalPosition)
 
 class Position
-Position : int x, y
+Position : int x
+Position : int y
+' Methods
 Position : Position(x,y)
+
+class Move
+Move : Position initialPosition, finalPosition
+' Methods
+Move : Move(Position initialPosition, Position finalPosition)
+' Relationships
+Move --o Position
+Move --o Position
+
+class MoveValidatorData
+MoveValidatorData : Move move
+MoveValidatorData : Board board
+MoveValidatorData : List<Turn> turns
+' Methods
+MoveValidatorData : MoveValidatorData(Move move, Board board, List<Turn> turns)
+' Relationships
+MoveValidatorData --o Move
+MoveValidatorData --o Board
+MoveValidatorData --o "n" Turn
+
+class Turn
+Turn : Move performedMove
+Turn : Optional<Piece> eatenPiece
+Turn : Player player
+' Methods
+Turn : Turn(Move performedMove, Optional<Piece> eatenPiece, Player player)
+' Relationships
+MoveValidatorData --o Move
+MoveValidatorData --o "0,1" Piece
+MoveValidatorData --o Player
+
+class Player
+Player : PieceColor playerColor
+Player : String name
+' Methods
+Player : Player(PieceColor playerColor, String name)
+' Relationships
+Player --o PieceColor
 
 class PieceColor
 PieceColor : Color color
+PieceColor : String pieceName
+
+class Piece
+Piece : String name
+Piece : PieceColor pieceColor
+
 
 interface MoveValidator
-MoveValidator : validate(Move move, Board board):boolean
+MoveValidator : validate(MoveValidatorData moveValidtorData):boolean
+' Relationships
+MoveValidator ..> MoveValidatorData
 
 ' Piece Handler
 interface Board
 Board : getpieceInPosition(Position position):Optional<Piece>
 Board : doesPositionExist(Position position):boolean
-Board : removePieceInPosition(Position position):Board
-Board : setPieceInPosition(Position position):Board
-
-interface Piece
-Piece : getName():String
-Piece : value():int
-Piece : getPieceColor(): PieceColor
+Board : removePieceInPosition(Position position)
+Board : setPieceInPosition(Position position)
+Board ..> Position
+Board ..> Piece
 
 interface WinCondition
 WinCondition : check(Board board):boolean
+
+interface PieceMoveValidatorMapper
+PieceMoveValidatorMap : getPieceMoveValidator(Piece piece): MoveValidator
+
+interface TurnHandler
+TurnHandler : addTurn(Turn turn)
+TurnHandler : getTurns():List<Turn>
 
 @enduml
