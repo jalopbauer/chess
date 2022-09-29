@@ -25,6 +25,15 @@ MoveValidatorData --o Move
 MoveValidatorData --o Board
 MoveValidatorData --o "n" Turn
 
+class WinConditionData
+WinConditionData : Board board
+WinConditionData : List<Turn> turns
+' Methods
+WinConditionData : WinConditionData(Board board, List<Turn> turns)
+' Relationships
+WinConditionData --o Board
+WinConditionData --o "n" Turn
+
 class Turn
 Turn : Move performedMove
 Turn : Optional<Piece> eatenPiece
@@ -32,9 +41,9 @@ Turn : Player player
 ' Methods
 Turn : Turn(Move performedMove, Optional<Piece> eatenPiece, Player player)
 ' Relationships
-MoveValidatorData --o Move
-MoveValidatorData --o "0,1" Piece
-MoveValidatorData --o Player
+Turn --o Move
+Turn --o "0,1" Piece
+Turn --o Player
 
 class Player
 Player : PieceColor playerColor
@@ -51,7 +60,15 @@ PieceColor : String pieceName
 class Piece
 Piece : String name
 Piece : PieceColor pieceColor
+' Relationships
+Piece --o PieceColor
 
+' No me gusta, cambiar
+class MoveResult
+MoveResult : Optional<Optional<Piece>> moveResult
+MoveResult : isInvalid():boolean
+MoveResult : wasEaten():boolean
+MoveResult : getPiece():Piece
 
 interface MoveValidator
 MoveValidator : validate(MoveValidatorData moveValidtorData):boolean
@@ -60,21 +77,30 @@ MoveValidator ..> MoveValidatorData
 
 ' Piece Handler
 interface Board
-Board : getpieceInPosition(Position position):Optional<Piece>
-Board : doesPositionExist(Position position):boolean
-Board : removePieceInPosition(Position position)
-Board : setPieceInPosition(Position position)
-Board ..> Position
-Board ..> Piece
+Board : makeMove(Position position): MoveResult
+' Relationships
+Board ..> MoveResult
 
 interface WinCondition
-WinCondition : check(Board board):boolean
+WinCondition : check(WinConditionData winConditionData):boolean
+' Relationships
+WinCondition ..> WinConditionData
 
 interface PieceMoveValidatorMapper
-PieceMoveValidatorMap : getPieceMoveValidator(Piece piece): MoveValidator
+PieceMoveValidatorMapper : getPieceMoveValidator(Piece piece): MoveValidator
+' Relationships
+PieceMoveValidatorMapper ..> Piece
+PieceMoveValidatorMapper ..> MoveValidator
 
 interface TurnHandler
 TurnHandler : addTurn(Turn turn)
 TurnHandler : getTurns():List<Turn>
+' Relationships
+TurnHandler ..> Turn
+TurnHandler ..> "0...n" Turn
 
+interface GameFlow
+GameFlow : next(Display display)
+' Las win conditions siempre van a usar WinConditionData y nunca va a cambiar. Pasar un puntero pero que no lo pueda editar maybe mejor?
+' MoveValidatorData los mismo ue arriba peeero el move si cambia entonces eso si pasar por el metodo?
 @enduml
