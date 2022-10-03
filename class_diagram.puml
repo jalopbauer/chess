@@ -22,7 +22,7 @@ MoveValidatorData : List<Turn> turns
 MoveValidatorData : MoveValidatorData(Move move, Board board, List<Turn> turns)
 ' Relationships
 MoveValidatorData --o Move
-MoveValidatorData --o Board
+MoveValidatorData --o UnmodifiableBoard
 MoveValidatorData --o "n" Turn
 
 class WinConditionData
@@ -31,7 +31,7 @@ WinConditionData : List<Turn> turns
 ' Methods
 WinConditionData : WinConditionData(Board board, List<Turn> turns)
 ' Relationships
-WinConditionData --o Board
+WinConditionData --o UnmodifiableBoard
 WinConditionData --o "n" Turn
 
 class Turn
@@ -56,6 +56,11 @@ Player --o PieceColor
 class PieceColor
 PieceColor : Color color
 PieceColor : String pieceName
+
+
+class UnmodifiableBoard
+UnmodifiableBoard : Board realBoard
+UnmodifiableBoard --o Board
 
 class Piece
 Piece : String name
