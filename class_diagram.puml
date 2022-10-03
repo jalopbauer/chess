@@ -14,16 +14,16 @@ Move : Move(Position initialPosition, Position finalPosition)
 Move --o Position
 Move --o Position
 
-class MoveValidatorData
-MoveValidatorData : Move move
-MoveValidatorData : Board board
-MoveValidatorData : List<Turn> turns
+class MoveRestrictionData
+MoveRestrictionData : Move move
+MoveRestrictionData : Board board
+MoveRestrictionData : List<Turn> turns
 ' Methods
-MoveValidatorData : MoveValidatorData(Move move, Board board, List<Turn> turns)
+MoveRestrictionData : MoveRestrictionData(Move move, Board board, List<Turn> turns)
 ' Relationships
-MoveValidatorData --o Move
-MoveValidatorData --o UnmodifiableBoard
-MoveValidatorData --o "n" Turn
+MoveRestrictionData --o Move
+MoveRestrictionData --o UnmodifiableBoard
+MoveRestrictionData --o "n" Turn
 
 class WinConditionData
 WinConditionData : Board board
@@ -75,10 +75,10 @@ MoveResult : isInvalid():boolean
 MoveResult : wasEaten():boolean
 MoveResult : getPiece():Piece
 
-interface MoveValidator
-MoveValidator : validate(MoveValidatorData moveValidtorData):boolean
+interface MoveRestriction
+MoveRestriction : validate(MoveRestrictionData moveValidtorData):boolean
 ' Relationships
-MoveValidator ..> MoveValidatorData
+MoveRestriction ..> MoveRestrictionData
 
 interface Board
 Board : makeMove(Position position): MoveResult
@@ -90,11 +90,11 @@ WinCondition : check(WinConditionData winConditionData):boolean
 ' Relationships
 WinCondition ..> WinConditionData
 
-interface PieceMoveValidatorMapper
-PieceMoveValidatorMapper : getPieceMoveValidator(Piece piece): MoveValidator
+interface PieceMoveRestrictionMapper
+PieceMoveRestrictionMapper : getPieceMoveRestriction(Piece piece): MoveRestriction
 ' Relationships
-PieceMoveValidatorMapper ..> Piece
-PieceMoveValidatorMapper ..> MoveValidator
+PieceMoveRestrictionMapper ..> Piece
+PieceMoveRestrictionMapper ..> MoveRestriction
 
 interface TurnHandler
 TurnHandler : addTurn(Turn turn)
@@ -108,11 +108,11 @@ Game : next(Display display)
 Game : hasEnded(): boolean
 ' Relationships
 Game ..> TurnHandler
-Game ..> PieceMoveValidatorMapper
+Game ..> PieceMoveRestrictionMapper
 Game ..> Board
 Game ..> "1...n" WinCondition
 
 ' Se llaman movement restrictions
 ' Las win conditions siempre van a usar WinConditionData y nunca va a cambiar. Pasar un puntero pero que no lo pueda editar maybe mejor?
-' MoveValidatorData los mismo ue arriba peeero el move si cambia entonces eso si pasar por el metodo?
+' MoveRestrictionData los mismo ue arriba peeero el move si cambia entonces eso si pasar por el metodo?
 @enduml
