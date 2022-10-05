@@ -1,6 +1,6 @@
 package board:
-  import movement.{Movement, Turn}
+  import movement.Movement
   import piece.Piece
-  trait Board():
-    def makeMoveMovement(movement: Movement): Option[Turn]
+  trait Board:
+    def makeMovement(movement: Movement): Board
     def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece]
