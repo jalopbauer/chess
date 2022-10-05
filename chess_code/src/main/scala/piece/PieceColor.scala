@@ -1,3 +1,2 @@
-package piece
-
-case class PieceColor()
+package piece:
+  case class PieceColor(color: String)
