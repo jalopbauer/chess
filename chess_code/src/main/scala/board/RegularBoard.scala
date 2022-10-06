@@ -1,14 +1,11 @@
 package board:
 
   import movement.Movement
-  import piece.Piece
+  import piece.{Piece, PieceColor, PieceType}
 
-  case class RegularBoard(boardPieces: Array[Array[Option[Piece]]] = Array.ofDim(8,8)) extends Board:
-
+  case class RegularBoard (pieces:Map[BoardCoordinate, Option[Piece]]) extends Board:
     def makeMovement(movement: Movement): RegularBoard =
-      val newBoard = boardPieces.clone()
-      RegularBoard(newBoard)
-
+    this
     def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece] =
       None
 
