@@ -120,4 +120,23 @@ class RegularBoardFactoryTest extends AnyFunSuite {
   test("Knight in BoardCoordinate (1, 7)") {
     pieceEquals(whiteKnight, regularBoard, BoardCoordinate(1, 7))
   }
+
+  val blackRook: Piece = Piece(blackColor, PieceType("ROOK"))
+  val whiteRook: Piece = Piece(whiteColor, PieceType("ROOK"))
+
+  test("Rook in BoardCoordinate (1, 8)") {
+    pieceEquals(blackRook, regularBoard, BoardCoordinate(1, 8))
+  }
+
+  test("Rook in BoardCoordinate (8, 8)") {
+    pieceEquals(blackRook, regularBoard, BoardCoordinate(8, 8))
+  }
+
+  test("Rook in BoardCoordinate (1, 1)") {
+    pieceEquals(whiteRook, regularBoard, BoardCoordinate(1, 1))
+  }
+
+  test("Rook in BoardCoordinate (8, 1)") {
+    pieceEquals(whiteRook, regularBoard, BoardCoordinate(8, 1))
+  }
 }
