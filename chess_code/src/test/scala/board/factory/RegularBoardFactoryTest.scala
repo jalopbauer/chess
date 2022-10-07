@@ -151,4 +151,14 @@ class RegularBoardFactoryTest extends AnyFunSuite {
     pieceEquals(blackQueen, regularBoard, BoardCoordinate(4, 8))
   }
 
+  val blackKing: Piece = Piece(blackColor, PieceType("KING"))
+  val whiteKing: Piece = Piece(whiteColor, PieceType("KING"))
+
+  test("King in BoardCoordinate (5, 1)") {
+    pieceEquals(whiteKing, regularBoard, BoardCoordinate(5, 1))
+  }
+
+  test("King in BoardCoordinate (5, 8)") {
+    pieceEquals(blackKing, regularBoard, BoardCoordinate(5, 8))
+  }
 }
