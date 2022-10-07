@@ -4,7 +4,8 @@ package board.factory.board_piece_map:
   import piece.{Piece, PieceColor}
 
   case class RegularPawnsFactory() extends BoardPieceMapFactory:
-    val whitePawns: XcoordPawnsFactory = XcoordPawnsFactory(2,PieceColor("WHITE"), 8)
-    val blackPawns: XcoordPawnsFactory = XcoordPawnsFactory(2,PieceColor("BLACK"), 8)
+    val whitePawns: YcoordPawnsFactory = YcoordPawnsFactory(2,PieceColor("WHITE"), 8)
+    val blackPawns: YcoordPawnsFactory = YcoordPawnsFactory(7,PieceColor("BLACK"), 8)
     def createPieces(): Map[BoardCoordinate, Option[Piece]] =
-      whitePawns.createPieces() ++ blackPawns.createPieces()
+      val pieces = whitePawns.createPieces().concat(blackPawns.createPieces())
+      pieces

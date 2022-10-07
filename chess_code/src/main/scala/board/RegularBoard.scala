@@ -6,6 +6,6 @@ package board:
   case class RegularBoard (pieces:Map[BoardCoordinate, Option[Piece]]) extends Board:
     def makeMovement(movement: Movement): RegularBoard =
     this
-    def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece] =
-      None
+    def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Option[Piece]] =
+      pieces.get(boardCoordinate)
 
