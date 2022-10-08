@@ -3,4 +3,5 @@ package board:
   import piece.Piece
   trait Board:
     def makeMovement(movement: Movement): Board
-    def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Option[Piece]]
+    def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece]
+    def getBoardCoordinate(tentativeBoardCoordinate: TentativeBoardCoordinate): Option[BoardCoordinate]

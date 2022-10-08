@@ -5,5 +5,5 @@ package helper:
 
   case object GetPieceInRegularBoard:
     def getPieceInBoardCoordinate(regularBoard: RegularBoard, boardCoordinate: BoardCoordinate):Piece =
-      regularBoard.getPieceInBoardCoordinate(boardCoordinate).get.get
+      regularBoard.getPieceInBoardCoordinate(boardCoordinate).get
 

@@ -1,0 +1,6 @@
+package movement_validation.movement_restriction
+
+import movement_validation.MoveRestrictionInput
+
+trait MovementRestriction:
+  def checkIfRestrictionIsMet(moveRestrictionInput: MoveRestrictionInput): Boolean
