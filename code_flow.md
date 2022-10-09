@@ -1,0 +1,9 @@
+userInputsMovement:TentativeMovement
+
+boardValidateTentativeMovementBoardCoordinates:CoordinatesAprovedMovement
+- validateInitialPosition: Option[BoardCoordinate]
+- validateFinalPosition: Option[BoardCoordinate]
+pieceInPosition(initialPosition):Option[Piece]
+validatePieceMovement(coordinatesAprovedMovement,InputData):Movement
+movePieceInBoard(movement):Board
+
