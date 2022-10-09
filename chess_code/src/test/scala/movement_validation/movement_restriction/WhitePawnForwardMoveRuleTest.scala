@@ -9,23 +9,26 @@ import piece.{Piece, PieceColor, PieceType}
 
 class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
 
-  val whiteColor: PieceColor = PieceColor("WHITE")
-  val boardCoordinate: BoardCoordinate = BoardCoordinate(2,2)
-  private val pawnType: PieceType = PieceType("PAWN")
-  val whitePawn: Piece = Piece(whiteColor,pawnType)
-  val initialCoordinateBoard: SinglePieceBoard = SinglePieceBoard(boardCoordinate,whitePawn)
   val pawnRules: MovementRestriction = PawnRule()
+  val whiteColor: PieceColor = PieceColor("WHITE")
+  val pawnType: PieceType = PieceType("PAWN")
+  val whitePawn: Piece = Piece(whiteColor,pawnType)
+
+  val initialBoardCoordinate: BoardCoordinate = BoardCoordinate(2,2)
+  val initialCoordinateBoard: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate,whitePawn)
 
   test("Single move forward test initial position"){
-    val movement = Movement(boardCoordinate,BoardCoordinate(2, 3))
+    val movement = Movement(initialBoardCoordinate,BoardCoordinate(2, 3))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard,List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
   test("Double move forward test initial position") {
-    val movement = Movement(boardCoordinate, BoardCoordinate(2, 4))
+    val movement = Movement(initialBoardCoordinate, BoardCoordinate(2, 4))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
+
+
 
 }
