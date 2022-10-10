@@ -1,6 +1,6 @@
 package movement_validation.movement_restriction
 
-import board.{BoardCoordinate, RegularBoard, SinglePieceBoard}
+import board.{BoardCoordinate, RegularBoard, SinglePieceBoard, DoublePieceBoard}
 import board.factory.RegularBoardFactory
 import movement.Movement
 import movement_validation.MoveRestrictionInput
@@ -11,8 +11,10 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
 
   val pawnRules: MovementRestriction = PawnRule()
   val whiteColor: PieceColor = PieceColor("WHITE")
+  val blackColor: PieceColor = PieceColor("BLACK")
   val pawnType: PieceType = PieceType("PAWN")
   val whitePawn: Piece = Piece(whiteColor,pawnType)
+  val blackPawn: Piece = Piece(blackColor,pawnType)
 
   val initialBoardCoordinate: BoardCoordinate = BoardCoordinate(2,2)
   val initialCoordinateBoard: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate,whitePawn)
@@ -73,4 +75,24 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
     val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard2, List())
     assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
+
+  val pawnPieceCoordinate: BoardCoordinate = BoardCoordinate(3, 3)
+  val diagonalPieceCoordinatePositive: BoardCoordinate =  BoardCoordinate(4, 4)
+  val twoPieceBoardDifferentColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinatePositive, blackPawn)
+
+  test("Diagonal pawn eat BoardCoordinate(4, 4)"){
+    val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinatePositive)
+    val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardDifferentColor, List())
+    assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
+
+  val diagonalPieceCoordinateNegative: BoardCoordinate =  BoardCoordinate(2, 4)
+  val twoPieceBoardDifferentColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, blackPawn)
+
+  test("Diagonal pawn eat BoardCoordinate(2, 4)") {
+    val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
+    val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardDifferentColorNegative, List())
+    assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
+
 }
