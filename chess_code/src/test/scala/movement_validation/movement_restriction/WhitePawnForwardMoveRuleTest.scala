@@ -29,6 +29,19 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
+  val movedBoardCoordinate: BoardCoordinate = BoardCoordinate(2, 3)
+  val movedCoordinateBoard: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate, whitePawn)
 
+  test("Single move forward test moved position") {
+    val movement = Movement(movedBoardCoordinate, BoardCoordinate(2, 4))
+    val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard, List())
+    assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
+
+  test("Double move forward test moved position") {
+    val movement = Movement(movedBoardCoordinate, BoardCoordinate(2, 5))
+    val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard, List())
+    assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
 
 }
