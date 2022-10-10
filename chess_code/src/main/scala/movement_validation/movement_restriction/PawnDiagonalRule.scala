@@ -13,6 +13,6 @@ import movement_validation.MoveRestrictionInput
       val maybeToPiece = moveRestrictionInput.board.getPieceInBoardCoordinate(to)
       val value = maybeFromPiece.get
       val value1 = maybeToPiece.get
-      (vector == BoardCoordinate(1, 1)
-        || vector == BoardCoordinate(-1, 1))
+      ((vector == BoardCoordinate(1, 1) || vector == BoardCoordinate(-1, 1))
+        || (vector == BoardCoordinate(-1, -1) ||  vector == BoardCoordinate(1, -1)))
         && value.color != value1.color

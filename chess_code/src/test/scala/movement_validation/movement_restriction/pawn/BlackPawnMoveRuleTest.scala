@@ -1,13 +1,14 @@
-package movement_validation.movement_restriction
+package movement_validation.movement_restriction.pawn
 
-import board.{BoardCoordinate, RegularBoard, SinglePieceBoard, DoublePieceBoard}
 import board.factory.RegularBoardFactory
+import board.{BoardCoordinate, DoublePieceBoard, RegularBoard, SinglePieceBoard}
 import movement.Movement
 import movement_validation.MoveRestrictionInput
+import movement_validation.movement_restriction.{MovementRestriction, PawnRule}
 import org.scalatest.funsuite.AnyFunSuite
 import piece.{Piece, PieceColor, PieceType}
 
-class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
+class BlackPawnMoveRuleTest extends AnyFunSuite {
 
   val pawnRules: MovementRestriction = PawnRule()
   val whiteColor: PieceColor = PieceColor("WHITE")
@@ -16,67 +17,67 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
   val whitePawn: Piece = Piece(whiteColor,pawnType)
   val blackPawn: Piece = Piece(blackColor,pawnType)
 
-  val initialBoardCoordinate: BoardCoordinate = BoardCoordinate(2,2)
-  val initialCoordinateBoard: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate,whitePawn)
+  val initialBoardCoordinate: BoardCoordinate = BoardCoordinate(7,7)
+  val initialCoordinateBoard: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate,blackPawn)
 
   test("Single move forward test initial position"){
-    val movement = Movement(initialBoardCoordinate,BoardCoordinate(2, 3))
+    val movement = Movement(initialBoardCoordinate,BoardCoordinate(7, 6))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard,List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
   test("Double move forward test initial position") {
-    val movement = Movement(initialBoardCoordinate, BoardCoordinate(2, 4))
+    val movement = Movement(initialBoardCoordinate, BoardCoordinate(7, 5))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val initialBoardCoordinate2: BoardCoordinate = BoardCoordinate(3, 2)
+  val initialBoardCoordinate2: BoardCoordinate = BoardCoordinate(8, 7)
   val initialCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate2, whitePawn)
 
   test("Single move forward test initial position redundancy") {
-    val movement = Movement(initialBoardCoordinate2, BoardCoordinate(3, 3))
+    val movement = Movement(initialBoardCoordinate2, BoardCoordinate(8, 6))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard2, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
   test("Double move forward test initial position redundancy") {
-    val movement = Movement(initialBoardCoordinate2, BoardCoordinate(3, 4))
+    val movement = Movement(initialBoardCoordinate2, BoardCoordinate(8, 5))
     val movementRestriction = MoveRestrictionInput(movement, initialCoordinateBoard2, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val movedBoardCoordinate: BoardCoordinate = BoardCoordinate(2, 3)
+  val movedBoardCoordinate: BoardCoordinate = BoardCoordinate(7, 6)
   val movedCoordinateBoard: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate, whitePawn)
 
   test("Single move forward test moved position") {
-    val movement = Movement(movedBoardCoordinate, BoardCoordinate(2, 4))
+    val movement = Movement(movedBoardCoordinate, BoardCoordinate(7, 5))
     val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
   test("Double move forward test moved position") {
-    val movement = Movement(movedBoardCoordinate, BoardCoordinate(2, 5))
+    val movement = Movement(movedBoardCoordinate, BoardCoordinate(7, 4))
     val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard, List())
     assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val movedBoardCoordinate2: BoardCoordinate = BoardCoordinate(3, 3)
+  val movedBoardCoordinate2: BoardCoordinate = BoardCoordinate(8, 6)
   val movedCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate2, whitePawn)
 
   test("Single move forward test moved position redundancy") {
-    val movement = Movement(movedBoardCoordinate2, BoardCoordinate(3, 4))
+    val movement = Movement(movedBoardCoordinate2, BoardCoordinate(8, 5))
     val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard2, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
   test("Double move forward test moved position redundancy") {
-    val movement = Movement(movedBoardCoordinate2, BoardCoordinate(3, 5))
+    val movement = Movement(movedBoardCoordinate2, BoardCoordinate(8, 4))
     val movementRestriction = MoveRestrictionInput(movement, movedCoordinateBoard2, List())
     assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val pawnPieceCoordinate: BoardCoordinate = BoardCoordinate(3, 3)
+  val pawnPieceCoordinate: BoardCoordinate = BoardCoordinate(5, 5)
   val diagonalPieceCoordinatePositive: BoardCoordinate =  BoardCoordinate(4, 4)
   val twoPieceBoardDifferentColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinatePositive, blackPawn)
 
@@ -94,10 +95,10 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
     assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val diagonalPieceCoordinateNegative: BoardCoordinate =  BoardCoordinate(2, 4)
+  val diagonalPieceCoordinateNegative: BoardCoordinate =  BoardCoordinate(6, 4)
   val twoPieceBoardDifferentColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, blackPawn)
 
-  test("Diagonal pawn eat BoardCoordinate(2, 4)") {
+  test("Diagonal pawn eat BoardCoordinate(6, 4)") {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
     val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardDifferentColorNegative, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
@@ -105,7 +106,7 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
 
   val twoPieceBoardSameColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, whitePawn)
 
-  test("Diagonal pawn cannot eat BoardCoordinate(2, 4)") {
+  test("Diagonal pawn cannot eat BoardCoordinate(6, 4)") {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
     val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardSameColorNegative, List())
     assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))

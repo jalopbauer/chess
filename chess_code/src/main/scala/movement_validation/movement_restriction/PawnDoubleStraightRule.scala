@@ -8,4 +8,4 @@ package movement_validation.movement_restriction:
         val from = moveRestrictionInput.movement.from
         val to = moveRestrictionInput.movement.to
         val vector = to.vector(from)
-        vector == BoardCoordinate(0, 2) && from.y == 2
+        (vector == BoardCoordinate(0, 2) && from.y == 2) || (vector == BoardCoordinate(0, -2) && from.y == 7)
