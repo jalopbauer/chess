@@ -17,15 +17,11 @@ package movement_validation.movement_restriction:
         val to = movement.to
         val vector = to.vector(from)
         val maybeFromPiece = moveRestrictionInput.board.getPieceInBoardCoordinate(from)
-
-
         val maybeToPiece = moveRestrictionInput.board.getPieceInBoardCoordinate(to)
-
-
         val value = maybeFromPiece.get
         val value1 = maybeToPiece.get
         (vector == BoardCoordinate(1, 1)
           || vector == BoardCoordinate(-1, 1))
-//          && value.color != value1.color
+          && value.color != value1.color
       }
     }

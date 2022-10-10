@@ -86,6 +86,14 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
+  val twoPieceBoardSameColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinatePositive, whitePawn)
+
+  test("Diagonal pawn cannot eat BoardCoordinate(4, 4)") {
+    val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinatePositive)
+    val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardSameColor, List())
+    assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
+
   val diagonalPieceCoordinateNegative: BoardCoordinate =  BoardCoordinate(2, 4)
   val twoPieceBoardDifferentColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, blackPawn)
 
@@ -93,6 +101,14 @@ class WhitePawnForwardMoveRuleTest extends AnyFunSuite {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
     val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardDifferentColorNegative, List())
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
+  }
+
+  val twoPieceBoardSameColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, whitePawn)
+
+  test("Diagonal pawn cannot eat BoardCoordinate(2, 4)") {
+    val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
+    val movementRestriction = MoveRestrictionInput(movement, twoPieceBoardSameColorNegative, List())
+    assert(!pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
 }

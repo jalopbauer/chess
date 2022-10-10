@@ -11,8 +11,8 @@ import piece.{Piece, PieceColor, PieceType}
     def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece] =
 
       boardCoordinate match
-        case coordinate1 if coordinate1 == boardCoordinate => Some(piece1)
-        case coordinate2 if coordinate2 == boardCoordinate => Some(piece2)
+        case BoardCoordinate(coordinate1.x,coordinate1.y) => Some(piece1)
+        case BoardCoordinate(coordinate2.x,coordinate2.y) => Some(piece2)
         case _ => None
 
     def getBoardCoordinate(tentativeBoardCoordinate: TentativeBoardCoordinate): Option[BoardCoordinate] =
