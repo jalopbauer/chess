@@ -9,7 +9,7 @@ package board:
 
       def getPieceInBoardCoordinate(boardCoordinate: BoardCoordinate): Option[Piece] =
         boardCoordinate match
-          case coordinate if coordinate == boardCoordinate => Some(piece)
+          case BoardCoordinate(coordinate.x,coordinate.y) => Some(piece)
           case _ => None
 
       def getBoardCoordinate(tentativeBoardCoordinate: TentativeBoardCoordinate): Option[BoardCoordinate] =
