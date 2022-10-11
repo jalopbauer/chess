@@ -33,7 +33,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
   }
 
   val initialBoardCoordinate2: BoardCoordinate = BoardCoordinate(8, 7)
-  val initialCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate2, whitePawn)
+  val initialCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(initialBoardCoordinate2, blackPawn)
 
   test("Single move forward test initial position redundancy") {
     val movement = Movement(initialBoardCoordinate2, BoardCoordinate(8, 6))
@@ -48,7 +48,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
   }
 
   val movedBoardCoordinate: BoardCoordinate = BoardCoordinate(7, 6)
-  val movedCoordinateBoard: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate, whitePawn)
+  val movedCoordinateBoard: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate, blackPawn)
 
   test("Single move forward test moved position") {
     val movement = Movement(movedBoardCoordinate, BoardCoordinate(7, 5))
@@ -63,7 +63,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
   }
 
   val movedBoardCoordinate2: BoardCoordinate = BoardCoordinate(8, 6)
-  val movedCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate2, whitePawn)
+  val movedCoordinateBoard2: SinglePieceBoard = SinglePieceBoard(movedBoardCoordinate2, blackPawn)
 
   test("Single move forward test moved position redundancy") {
     val movement = Movement(movedBoardCoordinate2, BoardCoordinate(8, 5))

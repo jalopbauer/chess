@@ -2,6 +2,7 @@ package movement_validation.movement_restriction:
 
   import board.BoardCoordinate
   import movement_validation.MoveRestrictionInput
+  import piece.PieceColor
 
   case class PawnSingleStraightRule() extends MovementRestriction:
     val boardCoordinateIsEmpty: MovementRestriction = ToPositionIsEmpty()
@@ -10,4 +11,5 @@ package movement_validation.movement_restriction:
       val from = moveRestrictionInput.movement.from
       val to = moveRestrictionInput.movement.to
       val vector = to.vector(from)
-      (vector == BoardCoordinate(0, 1) || vector == BoardCoordinate(0, -1)) && boardCoordinateIsEmpty.checkIfRestrictionIsMet(moveRestrictionInput)
+      val piece = moveRestrictionInput.board.getPieceInBoardCoordinate(from).get
+      ((vector == BoardCoordinate(0, 1) && piece.color == PieceColor("WHITE")) || (vector == BoardCoordinate(0, -1) && piece.color == PieceColor("BLACK"))) && boardCoordinateIsEmpty.checkIfRestrictionIsMet(moveRestrictionInput)
