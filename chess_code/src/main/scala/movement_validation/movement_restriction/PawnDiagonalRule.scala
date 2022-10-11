@@ -2,6 +2,7 @@ package movement_validation.movement_restriction
 
 import board.BoardCoordinate
 import movement_validation.MoveRestrictionInput
+import piece.PieceColor
 
   case class PawnDiagonalRule() extends MovementRestriction:
     def checkIfRestrictionIsMet(moveRestrictionInput: MoveRestrictionInput): Boolean =
@@ -14,8 +15,8 @@ import movement_validation.MoveRestrictionInput
       if (maybeFromPiece.isDefined && maybeToPiece.isDefined) {
         val value = maybeFromPiece.get
         val value1 = maybeToPiece.get
-        val bool = vector == BoardCoordinate(1, 1) || vector == BoardCoordinate(-1, 1)
-        val bool1 = vector == BoardCoordinate(-1, -1) || vector == BoardCoordinate(1, -1)
+        val bool = (vector == BoardCoordinate(1, 1) || vector == BoardCoordinate(-1, 1)) && value.color == PieceColor("WHITE")
+        val bool1 = (vector == BoardCoordinate(-1, -1) || vector == BoardCoordinate(1, -1)) && value.color == PieceColor("BLACK")
         val bool2 = value.color != value1.color
         (bool || bool1) && bool2
       } else {

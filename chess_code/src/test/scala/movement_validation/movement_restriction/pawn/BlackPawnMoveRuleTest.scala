@@ -79,7 +79,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
 
   val pawnPieceCoordinate: BoardCoordinate = BoardCoordinate(5, 5)
   val diagonalPieceCoordinatePositive: BoardCoordinate =  BoardCoordinate(4, 4)
-  val twoPieceBoardDifferentColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinatePositive, blackPawn)
+  val twoPieceBoardDifferentColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, blackPawn, diagonalPieceCoordinatePositive, whitePawn)
 
   test("Diagonal pawn eat BoardCoordinate(4, 4)"){
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinatePositive)
@@ -87,7 +87,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val twoPieceBoardSameColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinatePositive, whitePawn)
+  val twoPieceBoardSameColor: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, blackPawn, diagonalPieceCoordinatePositive, blackPawn)
 
   test("Diagonal pawn cannot eat BoardCoordinate(4, 4)") {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinatePositive)
@@ -96,7 +96,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
   }
 
   val diagonalPieceCoordinateNegative: BoardCoordinate =  BoardCoordinate(6, 4)
-  val twoPieceBoardDifferentColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, blackPawn)
+  val twoPieceBoardDifferentColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, blackPawn, diagonalPieceCoordinateNegative, whitePawn)
 
   test("Diagonal pawn eat BoardCoordinate(6, 4)") {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
@@ -104,7 +104,7 @@ class BlackPawnMoveRuleTest extends AnyFunSuite {
     assert(pawnRules.checkIfRestrictionIsMet(movementRestriction))
   }
 
-  val twoPieceBoardSameColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, whitePawn, diagonalPieceCoordinateNegative, whitePawn)
+  val twoPieceBoardSameColorNegative: DoublePieceBoard = DoublePieceBoard(pawnPieceCoordinate, blackPawn, diagonalPieceCoordinateNegative, blackPawn)
 
   test("Diagonal pawn cannot eat BoardCoordinate(6, 4)") {
     val movement = Movement(pawnPieceCoordinate, diagonalPieceCoordinateNegative)
