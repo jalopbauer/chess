@@ -11,8 +11,13 @@ import movement_validation.MoveRestrictionInput
       val vector = to.vector(from)
       val maybeFromPiece = moveRestrictionInput.board.getPieceInBoardCoordinate(from)
       val maybeToPiece = moveRestrictionInput.board.getPieceInBoardCoordinate(to)
-      val value = maybeFromPiece.get
-      val value1 = maybeToPiece.get
-      ((vector == BoardCoordinate(1, 1) || vector == BoardCoordinate(-1, 1))
-        || (vector == BoardCoordinate(-1, -1) ||  vector == BoardCoordinate(1, -1)))
-        && value.color != value1.color
+      if (maybeFromPiece.isDefined && maybeToPiece.isDefined) {
+        val value = maybeFromPiece.get
+        val value1 = maybeToPiece.get
+        val bool = vector == BoardCoordinate(1, 1) || vector == BoardCoordinate(-1, 1)
+        val bool1 = vector == BoardCoordinate(-1, -1) || vector == BoardCoordinate(1, -1)
+        val bool2 = value.color != value1.color
+        (bool || bool1) && bool2
+      } else {
+        false
+      }
