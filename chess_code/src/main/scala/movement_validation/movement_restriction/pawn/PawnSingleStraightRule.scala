@@ -1,12 +1,13 @@
-package movement_validation.movement_restriction:
-
+package movement_validation.movement_restriction.pawn:
+  
   import board.BoardCoordinate
   import movement_validation.MoveRestrictionInput
+  import movement_validation.movement_restriction.{MovementRestriction, ToPositionIsEmpty}
   import piece.PieceColor
-
-  case class PawnSingleStraightRule() extends MovementRestriction:
+  
+  case class PawnSingleStraightRule() extends MovementRestriction :
     val boardCoordinateIsEmpty: MovementRestriction = ToPositionIsEmpty()
-
+  
     def checkIfRestrictionIsMet(moveRestrictionInput: MoveRestrictionInput): Boolean =
       val from = moveRestrictionInput.movement.from
       val to = moveRestrictionInput.movement.to

@@ -1,12 +1,13 @@
-package movement_validation.movement_restriction:
+package movement_validation.movement_restriction.pawn:
 
-  import board.BoardCoordinate
   import movement_validation.MoveRestrictionInput
-
-  case class PawnRule() extends MovementRestriction:
+  import movement_validation.movement_restriction.MovementRestriction
+  
+  case class PawnRule() extends MovementRestriction :
     val pawnSingleStraightRule: MovementRestriction = PawnSingleStraightRule()
     val pawnDoubleStraightRule: MovementRestriction = PawnDoubleStraightRule()
     val pawnDiagonalRule: MovementRestriction = PawnDiagonalRule()
+  
     def checkIfRestrictionIsMet(moveRestrictionInput: MoveRestrictionInput): Boolean = {
       pawnSingleStraightRule.checkIfRestrictionIsMet(moveRestrictionInput)
         || pawnDoubleStraightRule.checkIfRestrictionIsMet(moveRestrictionInput)

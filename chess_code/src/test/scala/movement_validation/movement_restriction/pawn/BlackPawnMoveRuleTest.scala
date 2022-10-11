@@ -4,7 +4,7 @@ import board.factory.RegularBoardFactory
 import board.{BoardCoordinate, DoublePieceBoard, RegularBoard, SinglePieceBoard}
 import movement.Movement
 import movement_validation.MoveRestrictionInput
-import movement_validation.movement_restriction.{MovementRestriction, PawnRule}
+import movement_validation.movement_restriction.MovementRestriction
 import org.scalatest.funsuite.AnyFunSuite
 import piece.{Piece, PieceColor, PieceType}
 
