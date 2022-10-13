@@ -15,4 +15,8 @@ package board:
       def getBoardCoordinate(tentativeBoardCoordinate: TentativeBoardCoordinate): Option[BoardCoordinate] =
         Some(BoardCoordinate(tentativeBoardCoordinate))
 
-      
+      def getPieces:Map[BoardCoordinate,Option[Piece]]=
+        Map()
+
+      def removePiece(boardCoordinate: BoardCoordinate): Board =
+        this
